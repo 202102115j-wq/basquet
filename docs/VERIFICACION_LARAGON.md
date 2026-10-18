@@ -1,4 +1,4 @@
-# Verificar que la Parte 1 funciona en Laragon
+# Verificar que la Parte 2 funciona en Laragon
 
 Tras iniciar MySQL en Laragon y abrir la terminal dentro del proyecto:
 

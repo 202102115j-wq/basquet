@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ControladorAutenticacion;
+use App\Http\Controllers\ControladorEquipo;
 use App\Http\Controllers\ControladorPanel;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [ControladorAutenticacion::class, 'logout'])->name('logout');
     Route::get('/dashboard', [ControladorPanel::class, 'index'])->name('dashboard');
+    Route::resource('equipos', ControladorEquipo::class);
 });
