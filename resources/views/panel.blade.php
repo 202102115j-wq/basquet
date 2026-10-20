@@ -1,6 +1,9 @@
 @extends('layouts.principal')
-@section('title', 'Panel')
+@section('title', 'Inicio')
 @section('content')
 <h1>Panel de la liga</h1>
-<div class="card"><h2>Equipos registrados</h2><p class="metric">{{ $equipos }}</p></div>
+<div class="grid">
+    <div class="card"><div class="muted">Equipos</div><div class="metric">{{ $equipos }}</div></div>
+    <div class="card"><div class="muted">Jugadores</div><div class="metric">{{ $jugadores }}</div></div>
+</div>
 @endsection

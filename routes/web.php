@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ControladorAutenticacion;
 use App\Http\Controllers\ControladorEquipo;
+use App\Http\Controllers\ControladorJugador;
 use App\Http\Controllers\ControladorPanel;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [ControladorAutenticacion::class, 'logout'])->name('logout');
     Route::get('/dashboard', [ControladorPanel::class, 'index'])->name('dashboard');
     Route::resource('equipos', ControladorEquipo::class);
+
+    Route::get('/equipos/{equipo}/jugadores/crear', [ControladorJugador::class, 'create'])->name('equipos.jugadores.create');
+    Route::post('/equipos/{equipo}/jugadores', [ControladorJugador::class, 'store'])->name('equipos.jugadores.store');
 });

@@ -12,7 +12,7 @@ class ControladorEquipo extends Controlador
     public function index(): View
     {
         return view('equipos.listado', [
-            'equipos' => Equipo::orderBy('nombre')->paginate(10),
+            'equipos' => Equipo::withCount('jugadores')->orderBy('nombre')->paginate(10),
         ]);
     }
 
@@ -36,6 +36,7 @@ class ControladorEquipo extends Controlador
 
     public function show(Equipo $equipo): View
     {
+        $equipo->load(['jugadores' => fn ($consulta) => $consulta->orderBy('apellido')->orderBy('nombre')]);
 
         return view('equipos.detalle', compact('equipo'));
     }
