@@ -10,7 +10,6 @@ class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // El modelo se llama Usuario, pero la tabla estandar de Laravel es users.
     protected $table = 'users';
 
     protected $fillable = [

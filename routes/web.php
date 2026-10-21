@@ -24,4 +24,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/equipos/{equipo}/jugadores/crear', [ControladorJugador::class, 'create'])->name('equipos.jugadores.create');
     Route::post('/equipos/{equipo}/jugadores', [ControladorJugador::class, 'store'])->name('equipos.jugadores.store');
+    Route::get('/jugadores/{jugador}/editar', [ControladorJugador::class, 'edit'])->name('jugadores.edit');
+    Route::put('/jugadores/{jugador}', [ControladorJugador::class, 'update'])->name('jugadores.update');
+    Route::delete('/jugadores/{jugador}', [ControladorJugador::class, 'destroy'])->name('jugadores.destroy');
 });

@@ -24,6 +24,27 @@ class ControladorJugador extends Controlador
         return redirect()->route('equipos.show', $equipo)->with('success', 'Jugador agregado al equipo.');
     }
 
+    public function edit(Jugador $jugador): View
+    {
+        $jugador->load('equipo');
+        return view('jugadores.editar', compact('jugador'));
+    }
+
+    public function update(Request $request, Jugador $jugador): RedirectResponse
+    {
+        $data = $this->validateJugador($request, $jugador->equipo, $jugador);
+        $jugador->update($data);
+
+        return redirect()->route('equipos.show', $jugador->equipo_id)->with('success', 'Jugador actualizado.');
+    }
+
+    public function destroy(Jugador $jugador): RedirectResponse
+    {
+        $equipoId = $jugador->equipo_id;
+        $jugador->delete();
+
+        return redirect()->route('equipos.show', $equipoId)->with('success', 'Jugador eliminado.');
+    }
 
     private function validateJugador(Request $request, Equipo $equipo, ?Jugador $jugador = null): array
     {
