@@ -4,6 +4,7 @@ use App\Http\Controllers\ControladorAutenticacion;
 use App\Http\Controllers\ControladorEquipo;
 use App\Http\Controllers\ControladorJugador;
 use App\Http\Controllers\ControladorPanel;
+use App\Http\Controllers\ControladorPartido;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => auth()->check()
@@ -27,4 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/jugadores/{jugador}/editar', [ControladorJugador::class, 'edit'])->name('jugadores.edit');
     Route::put('/jugadores/{jugador}', [ControladorJugador::class, 'update'])->name('jugadores.update');
     Route::delete('/jugadores/{jugador}', [ControladorJugador::class, 'destroy'])->name('jugadores.destroy');
+
+    Route::resource('partidos', ControladorPartido::class)->only(['index','create','store','show']);
 });

@@ -23,21 +23,19 @@ class ControladorEquipo extends Controlador
 
     public function store(Request $request): RedirectResponse
     {
-        $datos = $request->validate([
+        $data = $request->validate([
             'nombre' => ['required', 'string', 'max:120', 'unique:equipos,nombre'],
             'ciudad' => ['required', 'string', 'max:120'],
             'entrenador' => ['nullable', 'string', 'max:120'],
         ]);
 
-        $equipo = Equipo::create($datos);
-
+        $equipo = Equipo::create($data);
         return redirect()->route('equipos.show', $equipo)->with('success', 'Equipo registrado.');
     }
 
     public function show(Equipo $equipo): View
     {
-        $equipo->load(['jugadores' => fn ($consulta) => $consulta->orderBy('apellido')->orderBy('nombre')]);
-
+        $equipo->load(['jugadores' => fn ($q) => $q->orderBy('apellido')->orderBy('nombre')]);
         return view('equipos.detalle', compact('equipo'));
     }
 
@@ -48,21 +46,21 @@ class ControladorEquipo extends Controlador
 
     public function update(Request $request, Equipo $equipo): RedirectResponse
     {
-        $datos = $request->validate([
+        $data = $request->validate([
             'nombre' => ['required', 'string', 'max:120', 'unique:equipos,nombre,'.$equipo->id],
             'ciudad' => ['required', 'string', 'max:120'],
             'entrenador' => ['nullable', 'string', 'max:120'],
         ]);
-
-        $equipo->update($datos);
-
+        $equipo->update($data);
         return redirect()->route('equipos.show', $equipo)->with('success', 'Equipo actualizado.');
     }
 
     public function destroy(Equipo $equipo): RedirectResponse
     {
+        if ($equipo->partidosComoLocal()->exists() || $equipo->partidosComoVisitante()->exists()) {
+            return back()->withErrors(['equipo' => 'No se puede eliminar un equipo que ya participa en partidos.']);
+        }
         $equipo->delete();
-
         return redirect()->route('equipos.index')->with('success', 'Equipo eliminado.');
     }
 }

@@ -1,0 +1,5 @@
+<div class="field"><label>Fecha y hora</label><input type="datetime-local" name="fecha_hora" value="{{ old('fecha_hora', isset($partido) ? $partido->fecha_hora->format('Y-m-d\TH:i') : '') }}" required></div>
+<div class="field"><label>Lugar</label><input name="lugar" value="{{ old('lugar', $partido->lugar ?? '') }}"></div>
+<div class="field"><label>Equipo local</label><select name="equipo_local_id" required><option value="">-- Seleccionar --</option>@foreach($equipos as $equipo)<option value="{{ $equipo->id }}" @selected((string) old('equipo_local_id', $partido->equipo_local_id ?? '') === (string) $equipo->id)>{{ $equipo->nombre }}</option>@endforeach</select></div>
+<div class="field"><label>Equipo visitante</label><select name="equipo_visitante_id" required><option value="">-- Seleccionar --</option>@foreach($equipos as $equipo)<option value="{{ $equipo->id }}" @selected((string) old('equipo_visitante_id', $partido->equipo_visitante_id ?? '') === (string) $equipo->id)>{{ $equipo->nombre }}</option>@endforeach</select></div>
+<input type="hidden" name="estado" value="programado">
