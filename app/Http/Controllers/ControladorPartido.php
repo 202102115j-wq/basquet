@@ -44,6 +44,31 @@ class ControladorPartido extends Controlador
         return view('partidos.detalle', compact('partido'));
     }
 
+    public function edit(Partido $partido): View
+    {
+        return view('partidos.editar', [
+            'partido' => $partido,
+            'equipos' => Equipo::orderBy('nombre')->get(),
+        ]);
+    }
+
+    public function update(Request $request, Partido $partido): RedirectResponse
+    {
+        $partido->update($this->validarPartido($request));
+
+        return redirect()
+            ->route('partidos.show', $partido)
+            ->with('success', 'Partido actualizado correctamente.');
+    }
+
+    public function destroy(Partido $partido): RedirectResponse
+    {
+        $partido->delete();
+
+        return redirect()
+            ->route('partidos.index')
+            ->with('success', 'Partido eliminado correctamente.');
+    }
 
     private function validarPartido(Request $request): array
     {
@@ -52,7 +77,7 @@ class ControladorPartido extends Controlador
             'lugar' => ['nullable', 'string', 'max:180'],
             'equipo_local_id' => ['required', 'exists:equipos,id'],
             'equipo_visitante_id' => ['required', 'different:equipo_local_id', 'exists:equipos,id'],
-            'estado' => ['required', Rule::in(['programado'])],
+            'estado' => ['required', Rule::in(['programado', 'finalizado'])],
             'puntos_local' => ['nullable', 'required_if:estado,finalizado', 'integer', 'min:0', 'max:300'],
             'puntos_visitante' => ['nullable', 'required_if:estado,finalizado', 'integer', 'min:0', 'max:300'],
         ]);
