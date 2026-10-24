@@ -1,15 +1,14 @@
 <?php
 
 use App\Http\Controllers\ControladorAutenticacion;
-use App\Http\Controllers\ControladorEquipo;
-use App\Http\Controllers\ControladorJugador;
 use App\Http\Controllers\ControladorPanel;
+use App\Http\Controllers\ControladorEquipo;
+use App\Http\Controllers\ControladorEstadistica;
+use App\Http\Controllers\ControladorJugador;
 use App\Http\Controllers\ControladorPartido;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => auth()->check()
-    ? redirect()->route('dashboard')
-    : redirect()->route('login'));
+Route::get('/', fn () => auth()->check() ? redirect()->route('dashboard') : redirect()->route('login'));
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [ControladorAutenticacion::class, 'showLogin'])->name('login');
@@ -30,4 +29,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/jugadores/{jugador}', [ControladorJugador::class, 'destroy'])->name('jugadores.destroy');
 
     Route::resource('partidos', ControladorPartido::class);
+    Route::get('/estadisticas', [ControladorEstadistica::class, 'index'])->name('estadisticas.index');
 });

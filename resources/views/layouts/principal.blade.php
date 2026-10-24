@@ -48,6 +48,7 @@
             <a href="{{ route('dashboard') }}">Inicio</a>
             <a href="{{ route('equipos.index') }}">Equipos</a>
             <a href="{{ route('partidos.index') }}">Partidos</a>
+            <a href="{{ route('estadisticas.index') }}">Estadísticas</a>
             <form class="inline" method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button class="btn btn-secondary" type="submit">Salir</button>
