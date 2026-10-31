@@ -1,0 +1,14 @@
+COMANDOS PARA LARAGON – LIGA DE BÁSQUETBOL
+1. Primera configuración
+copy .env.example .env
+composer install
+php artisan key:generate
+
+
+2. Iniciar Laragon y ejecutar el proyecto
+cd "C:\Users\Usuario\Desktop\BASQUET"
+php artisan serve
+
+
+3. Abrir en el navegador
+http://127.0.0.1:8000

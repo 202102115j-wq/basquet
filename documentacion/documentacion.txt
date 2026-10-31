@@ -1,0 +1,22 @@
+Liga de Básquetbol en 11 partes
+1. Autenticación: Estructura de Laravel, registro de usuarios, inicio y cierre de sesión, recuperación de acceso y panel protegido mediante autenticación.
+
+2. Equipos: Registro, listado, consulta, edición y eliminación de equipos de básquetbol.
+
+3. Registro de Jugadores: Alta y consulta de jugadores dentro de cada equipo, incluyendo nombres, apellidos, posición de juego y número de dorsal.
+
+4. Gestión de Jugadores: Edición y eliminación de jugadores, dorsal único por equipo, validaciones de formularios y control de datos registrados.
+
+5. Programación de Partidos: Programación de encuentros deportivos con selección de equipos local y visitante, fecha, hora y sede del partido.
+
+6. Resultados de Partidos: Actualización de marcadores, finalización y eliminación de partidos, validación de resultados y restricción de empates.
+
+7. Estadísticas y Panel: Tabla de posiciones ordenada por victorias y diferencia de puntos, últimos resultados, estadísticas de equipos y panel general de la liga.
+
+8. Pruebas y Documentación Final: Pruebas completas del sistema, verificación de funcionalidades, documentación técnica obligatoria y guía de entrega mediante Git y GitHub.
+
+9. Corrección de Archivos Duplicados: Revisión general del proyecto para identificar y corregir archivos duplicados, controladores repetidos, vistas innecesarias, rutas duplicadas y conflictos de código. Organización de carpetas y archivos para mantener una estructura limpia y funcional.
+
+10. Rediseño de Interfaz al Estilo NBA: Modificación del diseño visual del sistema tomando como referencia la estética de la NBA. Implementación de una interfaz deportiva moderna, con colores, tipografías, tarjetas de equipos, escudos, paneles de estadísticas, tablas de posiciones y presentación atractiva de los partidos y resultados. Diseño adaptable a computadoras, tablets y celulares.
+
+11. Documentación de las Partes, Comandos de Laragon y Base de Datos: Elaboración de documentación técnica detallada de las 11 partes del proyecto, explicando las funcionalidades implementadas, archivos modificados, estructura de Laravel y procedimientos de instalación. Inclusión de los comandos necesarios para trabajar con Laragon, iniciar el proyecto, ejecutar migraciones, crear la base de datos, configurar el archivo .env, generar tablas, insertar datos y ejecutar el servidor local. También se incluirá el procedimiento para crear, importar, exportar y respaldar la base de datos desde Laragon y phpMyAdmin.
